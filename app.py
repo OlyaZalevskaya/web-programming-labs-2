@@ -1,4 +1,4 @@
-from flask import Flask, redirect
+from flask import Flask, redirect, url_for
 app = Flask(__name__)
 
 @app.route("/")
@@ -31,7 +31,7 @@ def menu():
 </html>
 """
 
-@app.route("/lab1")
+@app.route("/lab1/")
 def lab1():
     return """
 <!doctype html>
@@ -57,3 +57,32 @@ def lab1():
     </body>   
 </html>
 """
+
+@app.route("/lab1/oak")
+def oak():
+    return '''
+<!doctype html>
+<html>
+    <head>
+        <title>Залевская Ольга Сергеевна, лабораторная 1</title>
+    </head>    
+    
+    <body>
+        <link rel="stylesheet" href="''' + url_for('static', filename='lab1.css') + '''">
+        <header>
+        НГТУ, ФБ, Лабораторная работа 1
+        </header>
+
+        <h1>Дуб</h1>
+
+        <div>
+        <img src="''' + url_for('static', filename='oak.jpg') + '''">
+        </div>
+
+        </p>
+        <footer>
+            &copy; Залевская Ольга, ФБИ-14, 3 курс, 2023
+        </footer> 
+    </body>   
+</html>
+'''
