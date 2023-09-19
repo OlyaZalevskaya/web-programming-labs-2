@@ -1,9 +1,37 @@
 body{
     background: rgb(99, 152, 110);
     font-size: 20px;
+    padding-top: 20px;
+    padding-bottom: 60px;
 }
 img{
-    height: 60%;
-    width: 60%;
-    margin-left: 250px;
+    height: 40%;
+    width: 40%;
+    margin-left: 350px;
+}
+h1{
+    text-align: center;
+}
+p{
+    text-indent: 1.5pc;
+}
+footer{
+    background-color: rgb(38, 129, 53);
+    padding: 10px; 
+    font-size: 16pt; 
+    text-align: right;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+}
+header {
+    background-color: rgb(38, 129, 53);
+    padding: 10px; 
+    font-size: 16pt;
+    width: 100%;
+    right: 0;
+    top: 0;
+    left: 0;
+    position: fixed;
 }
