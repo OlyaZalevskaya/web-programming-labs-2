@@ -206,4 +206,7 @@ def pand():
 @app.route('/lab2/example')
 def example():
     name = 'Ольга Залевская'
-    return render_template('example.html', name=name)
+    numer = '2'
+    gruppa = 'ФБИ-14'
+    curs = '3 курс'
+    return render_template('example.html', name=name, numer=numer, gruppa=gruppa, curs=curs)
