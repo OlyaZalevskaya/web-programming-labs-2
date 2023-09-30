@@ -100,7 +100,6 @@ def oak():
         <h1>Дуб</h1>
 
         <img src="''' + url_for('static', filename='oak.jpg') + '''">
-
         
         <footer>
             &copy; Залевская Ольга, ФБИ-14, 3 курс, 2023
@@ -235,3 +234,9 @@ def example():
 @app.route("/lab2/")
 def lab2():
     return render_template('lab2.html')
+
+@app.route("/lab2/flowers")
+def flowers():
+    return render_template('flowers.html') 
+   
+    
