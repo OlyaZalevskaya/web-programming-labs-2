@@ -205,4 +205,5 @@ def pand():
 
 @app.route('/lab2/example')
 def example():
-    return render_template('example.html')
+    name = 'Ольга Залевская'
+    return render_template('example.html', name=name)
