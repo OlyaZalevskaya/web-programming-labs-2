@@ -8,17 +8,22 @@
 </head>
 <body>
     <header>
-        WEB-программирование, часть 2. Лабораторная работа {{numer}}
+        WEB-программирование, часть 2. {% if numer %}Лабораторная работа 2 {% endif %}
     </header>
 
     <main>
         5 + 2 = {{ 5 + 2 }}<br>
         11 * 8 = {{11 * 8 }}<br>
         45**8 = {{45**8}}<br>
+        <ul>
+            {% for f in fruits %}
+            <li>{{ f.name }}: {{ f.price }} &#x20bd;</li>
+            {% endfor %}
+        </ul>
     </main>
 
     <footer>
-        &copy; {{ name }}, {{gruppa}}, {{curs}}, 2023
+        &copy; {{ name }}, {{gruppa}}, {{curs}} Курс, 2023
     </footer>
 </body>
 </html>
