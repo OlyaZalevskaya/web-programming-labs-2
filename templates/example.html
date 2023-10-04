@@ -15,11 +15,15 @@
         5 + 2 = {{ 5 + 2 }}<br>
         11 * 8 = {{11 * 8 }}<br>
         45**8 = {{45**8}}<br>
+
+        <p>Список фруктов</p>
         <ul>
             {% for f in fruits %}
             <li>{{ f.name }}: {{ f.price }} &#x20bd;</li>
             {% endfor %}
         </ul>
+
+        <p>Список книг</p>
         <ul>
             {% for f in buch %}
             <li>{{ f.autor }}: {{ f.name }}, {{ f.ganr }}, {{ f.col }} </li>
