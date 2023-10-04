@@ -6,6 +6,8 @@ app = Flask(__name__)
 def start():
     return redirect ("/menu", code=302)
 
+
+
 @app.route("/menu")
 def menu():
      return '''
