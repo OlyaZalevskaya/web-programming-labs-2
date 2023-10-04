@@ -8,13 +8,14 @@ def start():
 
 @app.route("/menu")
 def menu():
-     return """
+     return '''
 <!doctype html>
 <html>
     <head>
         <title>НГТУ, ФБ, Лабораторные работы</title>
     </head>    
     <body>
+        <link rel="stylesheet" href="''' + url_for('static', filename='lab1.css') + '''">
         <header>
         НГТУ, ФБ, WEB-программирование, часть 2. Список лабораторных
         </header>
@@ -33,20 +34,23 @@ def menu():
         </footer> 
     </body>   
 </html>
-"""
+'''
 
 @app.route("/lab1/")
 def lab1():
-    return """
+    return '''
 <!doctype html>
 <html>
     <head>
         <title>Залевская Ольга Сергеевна, лабораторная 1</title>
     </head>    
     <body>
+        <link rel="stylesheet" href="''' + url_for('static', filename='lab1.css') + '''">
         <header>
         НГТУ, ФБ, Лабораторная работа 1
         </header>
+
+        <a href = '/menu'>Меню</a>
 
         <h1>web-сервер на flask</h1>
             <p>Flask — фреймворк для создания веб-приложений на языке
@@ -56,7 +60,6 @@ def lab1():
             веб-приложений, сознательно предоставляющих лишь самые базовые возможности.
         </p>
         
-        <a href = '/menu'>Меню</a>
 
          <h2>Реализованные роуты</h2>    
         <ul>
@@ -83,7 +86,7 @@ def lab1():
         </footer> 
     </body>   
 </html>
-"""
+'''
 
 @app.route("/lab1/oak")
 def oak():
