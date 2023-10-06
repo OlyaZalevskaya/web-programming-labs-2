@@ -3,6 +3,20 @@
 {% block lab %}Лабораторная работа 3{% endblock %}
 
 {% block main %}
+
+    {% if user %}
+
+    <h1>Привет, {{ user }}!</h1>
+    <h2>Добро пожалавать на наш сайт!</h2>
+    
+    <div>ваш возраст: {{ age }}</div>
+    <div>ваш пол: {{ sex }}</div>
+
+    <div>
+        <a href="/lab3/forml">Заново</a>
+    </div>
+    {% else %}
+
     <h1>Пользователь</h1>
 
     <form>
@@ -10,8 +24,23 @@
         <div>
             <input type="text" placeholder="как вас зовут?" name="user">
         </div>
+
+        <label>Ваш возраст:</label>
+        <div>
+            <input type="number" name="age">
+        </div>
+
+        <label>Ваш пол:</label>
+        <div>
+            <select name="sex">
+                <option value="male">мужчина</option>
+                <option value="female">женщина</option>
+            </select>
+        </div>
+
         <div>
             <button type="submit">Отправить</button>
         </div>
     </form>
+    {% endif %}
 {% endblock %}
