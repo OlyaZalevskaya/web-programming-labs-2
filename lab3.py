@@ -9,7 +9,15 @@ def lab():
 
 @lab3.route('/lab3/forml')
 def forml():
-    user = request.args.get('user')
+    errors = {}
+    user =  request.args.get('user')
+    if user == '':
+        errors['user'] = 'Заполните поле!'
+
+    error = {}
     age = request.args.get('age')
+    if age == '':
+        error['age'] = 'Заполните поле!'
+    
     sex = request.args.get('sex')
-    return render_template('forml.html', user=user, age=age, sex=sex)
+    return render_template('forml.html', user=user, age=age, sex=sex, errors=errors,error=error)
