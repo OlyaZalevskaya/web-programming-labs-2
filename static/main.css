@@ -34,3 +34,15 @@ img{
     width: 40%;
     margin-left: 350px;
 }
+.error{
+    color: rgb(192, 25, 25);
+    
+}
+div{
+    margin: 13px;
+    font-size: 16pt;
+}
+.a{
+    font-size: 20pt;
+
+}
