@@ -52,3 +52,8 @@ def pay():
 @lab3.route('/lab3/success')
 def success():
     return render_template('success.html')
+
+
+@lab3.route('/lab3/bilet')
+def bilet():
+    return render_template('bilet.html')
