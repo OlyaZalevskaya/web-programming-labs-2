@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block lab %}Лабораторная работа 3{% endblock %}
+
+{% block main %}
+    <h1>Покупка железнодорожного билета</h1>
+
+    <form action="/lab3/Bilet">
+        
+
+        <div>ФИО пассажира:</div>
+        <label>
+            <input type="text"  name="name">
+        </label>
+
+        <div>Тип:</div>
+        <label>
+            <input type="checkbox" name="baby">Детский
+        </label>
+        <label>
+            <input type="checkbox" name="wzros">Взрослый
+        </label><br>
+
+        <div>Полка:</div>
+        <label>
+            <input type="checkbox" name="niz">Нижняя
+        </label>
+        <label>
+            <input type="checkbox" name="ver">Верхняя
+        </label>
+        <label>
+            <input type="checkbox" name="verbok">Верхняя боковая
+        </label>
+        <label>
+            <input type="checkbox" name="nizbok">Нижняя боковая
+        </label><br>
+
+        <div>Есть багаж:</div>
+        <label>
+            <input type="checkbox" name="da">Да
+        </label>
+        <label>
+            <input type="checkbox" name="net">Нет
+        </label>
+
+        
+
+        <div>Пункт выезда:</div>
+        <label>
+            <input type="text"  name="name">
+        </label>
+
+        <div>Пункт назначения:</div>
+        <label>
+            <input type="text"  name="name">
+        </label>
+
+
+        <div>
+            <button type="submit">Заказать</button>
+        </div>
+    </form>  
+{% endblock %}
