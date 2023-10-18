@@ -54,6 +54,47 @@ def success():
     return render_template('success.html')
 
 
+@lab3.route('/lab3/ticket')
+def t():
+    errors = {}
+    fam = request.args.get('fam')
+    if fam == '':
+        errors['fam'] = 'Заполните поле!'
+
+    name = request.args.get('name')
+    if name == '':
+        errors['name'] = 'Заполните поле!'
+
+    otch = request.args.get('otch')
+    if otch == '':
+        errors['otch'] = 'Заполните поле!'
+    
+    age = request.args.get('age')
+    if age == '':
+        errors['age'] = 'Заполните поле!'
+
+    start = request.args.get('start')
+    if start == '':
+        errors['start'] = 'Заполните поле!'
+
+    finish = request.args.get('finish')
+    if finish == '':
+        errors['finish'] = 'Заполните поле!'
+
+    data = request.args.get('data')
+    if data == '':
+        errors['data'] = 'Заполните поле!'
+
+    bagag = request.args.get('bagag')
+
+    typ = request.args.get('typ')
+
+    polka = request.args.get('polka')
+
+    return render_template('ticket.html', fam=fam, name=name, otch=otch, age=age, 
+    start=start, finish=finish, data=data, bagag=bagag, typ=typ, polka=polka, errors=errors)
+
+
 @lab3.route('/lab3/bilet')
 def bilet():
     return render_template('bilet.html')
