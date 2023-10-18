@@ -4,7 +4,7 @@
 
 {% block main %}
 
-    {% if  fam %}
+    {% if  fam and name and otch and age and start and finish and data %}
 
     <h1>Ваш билет:</h1>
 
@@ -67,7 +67,7 @@
         <div>Выберите полку:</div>
         <div>
             <select name="polka">
-                <option value="nig" {{ polka == 'niz' and 'selected' }}>Нижняя</option>
+                <option value="nig" {{ polka == 'nig' and 'selected' }}>Нижняя</option>
                 <option value="verh" {{ polka == 'verh' and 'selected' }}>Верхняя</option>
                 <option value="verhbok" {{ polka == 'verhbok' and 'selected' }}>Верхняя боковая</option>
                 <option value="nigbok" {{ polka == 'nigbok' and 'selected' }}>Нижняя боковая</option>
@@ -110,7 +110,7 @@
         <label>
 
         <div>
-            <button type="submit" class="btn">Оформить билет</button>
+            <button type="submit">Оформить билет</button>
         </div>
     </form>
 
