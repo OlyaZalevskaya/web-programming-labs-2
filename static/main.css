@@ -35,7 +35,8 @@ img{
     margin-left: 350px;
 }
 .error{
-    color: rgb(192, 25, 25);
+    color: rgb(191, 29, 29);
+    text-decoration: underline;
     
 }
 div{
