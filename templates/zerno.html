@@ -1,0 +1,40 @@
+{% extends "base.html" %} 
+ 
+{% block lab %}Лабораторная работа 4{% endblock %} 
+ 
+{% block main %} 
+    <h1>Заказ зерна</h1> 
+    
+    <form method="post"> 
+        <div> 
+            <label>Выберите зерно</label> 
+        </div> 
+        <div> 
+            <select name="zerno"> 
+                <option value="ячмень" {{ zerno == 'ячмень' and 'selected' }}>ячмень</option> 
+                <option value="овес" {{ zerno == 'овес' and 'selected' }}>овес</option> 
+                <option value="пшеница" {{ zerno == 'пшеница' and 'selected' }}>пшеница</option> 
+                <option value="рожь" {{ zerno == 'рожь' and 'selected' }}>рожь</option> 
+            </select> 
+        </div> 
+        <div> 
+            <label for="ves">Введите вес:</label> 
+            <input type="number" id="ves" name="ves" value="{{ ves }}"> 
+            {% if error and error.ves %} 
+            <span class="error">{{ error.ves }}</span> 
+            {% endif %} 
+        </div> 
+        <div> 
+            <button type="submit">Оформить заказ</button> 
+        </div> 
+
+        {% if message %} 
+        <div>{{ message }}</div> 
+        {% endif %} 
+
+        <div> 
+            <a href="/lab4/zerno">Назад</a> 
+        </div> 
+    </form> 
+    
+{% endblock %}
