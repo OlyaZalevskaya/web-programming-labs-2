@@ -97,9 +97,19 @@ def cookies():
         return render_template('cookies.html') 
  
     color = request.form.get('color') 
+    backcolor = request.form.get('backcolor') 
+    font_size = request.form.get('font_size') 
+    if color == backcolor: 
+        # Если цвет текста совпадает с цветом фона 
+        error_msg = 'Цвет текста и фона одинаковые, выберите разные цвета' 
+        return render_template('cookies.html', error_msg=error_msg) 
     headers = { 
-        'Set-Cookie': 'color=' + color + ' ; path=/', 
+        'Set-Cookie': [ 
+            'color=' + color + ' ; path=/', 
+            'backcolor=' + backcolor + ' ; path=/', 
+            'font_size=' + str(font_size) + ' ; path=/' 
+        ], 
         'Location': '/lab4/cookies' 
     } 
-    return '', 303, headers 
-    
+ 
+    return '', 303, headers
