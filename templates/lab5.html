@@ -3,9 +3,15 @@
 {% block lab %}Лабораторная работа 5{% endblock %}
 
 {% block main %}
-<ol>
-    <li>
-        <a href="/lab5/users">Пользователи</a>
-    </li>
-</ol>
+    <h3><div style="text-align: center; ">База знаний</div></h3>
+    <nav style=" display: flex;justify-content: space-between;padding: 10px;">   
+        
+        <a href="/lab5/article_list" style="  color: #fff;text-decoration: none;padding: 10px;background-color: rgb(20, 100, 28)" >Посмотреть заметки</a>
+        <a href="/lab5/new_article" style="  color: #fff;text-decoration: none;padding: 10px;background-color: rgb(20, 100, 28)" >Создать заметку</a>
+        <a href="/lab5/users" style="  color: #fff;text-decoration: none;padding: 10px;background-color: rgb(20, 100, 28)">Пользователи</a>
+        <a href="/lab5/login" style="  color: #fff;text-decoration: none;padding: 10px;background-color: rgb(20, 100, 28)">Логин</a>
+        <a href="/lab5/register" style="  color: #fff;text-decoration: none;padding: 10px;background-color: rgb(20, 100, 28)">Регистрация</a>
+        <a href="logout" style="  color: #fff;text-decoration: none;padding: 10px;background-color: rgb(20, 100, 28)">Выход</a>
+        <span style="padding: 10px; font-size: larger;">{{visibleUser}}</span> 
+    </nav>
 {% endblock %}
