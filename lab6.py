@@ -56,3 +56,29 @@ def register():
 @lab6.route('/lab6/')
 def lab():
     return render_template('lab6.html')
+
+
+@lab6.route("/lab6/login", methods=["GET", "POST"])
+def login():
+    if request.method == "GET":
+        return render_template("login3.html")
+
+    username_form = request.form.get("username")
+    password_form = request.form.get("password")
+
+    if not username_form or not password_form:
+        error_message = "Поле имя и/или пароль не заполнено"
+        return render_template("login3.html", error_message=error_message)
+
+    my_user = users.query.filter_by(username=username_form).first()
+
+    if my_user is None:
+        error_message = "Пользователь не существует"
+        return render_template("login3.html", error_message=error_message)
+
+    if not check_password_hash(my_user.password, password_form):
+        error_message = "Неправильный пароль"
+        return render_template("login3.html", error_message=error_message)
+
+    login_user(my_user, remember=False)
+    return redirect("/lab6/articles")
