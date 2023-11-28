@@ -53,10 +53,6 @@ def register():
 
     return redirect("/lab6/login")
 
-@lab6.route('/lab6/')
-def lab():
-    return render_template('lab6.html')
-
 
 @lab6.route("/lab6/login", methods=["GET", "POST"])
 def login():
@@ -124,3 +120,10 @@ def view_article(article_id):
     if not article:
         return "Статья не найдена"
     return render_template("article_details.html", article=article)
+
+
+@lab6.route("/lab6/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect("/lab6/")
