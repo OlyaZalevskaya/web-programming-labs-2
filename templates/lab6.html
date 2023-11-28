@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block lab %}Лабораторная работа 6{% endblock %}
+
+{% block main %}
+<h1>Добро пожаловать, {{ username }}!</h1>
+<div style="display: flex; justify-content: space-between;">
+    <p style="color: rgb(54, 42, 165);">База знаний</p>
+    <div style="text-align: center;">
+        <a href="/lab6/articles">Посмотреть статьи</a>
+        <a href="/lab6/add_article">Добавить статью</a>
+    </div>
+    <div>
+        <a href="/lab6/login" style="border: 2px solid blue; padding: 5px 10px; border-radius: 5px;">Логин</a>
+        <a href="/lab6/register" style="background-color: blue; color: white; padding: 5px 10px; border-radius: 5px;">Регистрация</a>
+        <a href="/lab6/logout" style="border: 2px solid blue; padding: 5px 10px; border-radius: 5px;">Выход</a>
+        <span>{{username}}</span>
+    </div>
+</div>
+{% endblock %}
