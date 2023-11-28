@@ -13,4 +13,3 @@ class articles(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     tite = db.Column(db.String(50), nullable=False)
     article_text = db.Column(db.Text, nullable=False)
-  
