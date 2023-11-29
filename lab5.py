@@ -4,7 +4,10 @@ import psycopg2
 
 lab5 = Blueprint('lab5', __name__)
 
+#отдельную функцию, которая будет возвращать connection.
+
 def dBConnect():
+    #параметры подключения к бд
     conn = psycopg2.connect(
         host="127.0.0.1",
         database = "knowledge_base_for_zalevskaya_olga",
@@ -17,6 +20,7 @@ def dBConnect():
 
 
 def dBClose(cursor,connection):
+    #закрытие курсора и соединения
     cursor.close()
     connection.close()
 
@@ -68,23 +72,25 @@ def user():
 def registerPage():
     errors = []
 
+#если метод GET, то возращается шаблон
     if request.method == 'GET':
         return render_template('register.html', errors=errors)
-
-    username = request.form.get('username')
+#если метод POST, попадаем сюда. 
+    username = request.form.get('username') 
     password = request.form.get('password')
-
+#проверяем на пустоту. Если любой из низ пустой, добавляем ошибку
     if not (username and password):
         errors.append("Пожалуйста, заполните все поля")
         print(errors)
         return render_template('register.html', errors=errors)
 
     hashPassword = generate_password_hash(password)
-
+#если попали сюда, то все зоплненою Подключаемся к БД
     conn = dBConnect()
     cur = conn.cursor()
+    # Пишем запрос, который курсор должен выполнить,проверяем наличие клиента в базе. 
     cur.execute(f"SELECT username FROM users WHERE username = '{username}';")
-
+    #только один пользователь с таким именем может быть в бд
     if cur.fetchone() is not None:
         errors.append("Пользователь с данным именем уже существует")
 
@@ -92,6 +98,7 @@ def registerPage():
         cur.close()
         return render_template('register.html', errors=errors)
     
+     # Пишем запрос, который курсор должен выполнить
     cur.execute(f"INSERT INTO users (username, password) VALUES ('{username}','{hashPassword}');")
     conn.commit()
     conn.close()
@@ -125,7 +132,9 @@ def loginPage():
         return render_template('login2.html', errors=errors)
     
     userID, hashPassword = result
+    #check_password_hash сравниваем хэш и пароль из бд. Сама переведет password в хэш
     if check_password_hash(hashPassword, password):
+        #сохраняем id и username в сессию
         session['id'] = userID
         session['username'] = username
         conn.close()  # Закрытие соединения
@@ -138,6 +147,7 @@ def loginPage():
 @lab5.route("/lab5/new_article", methods=["GET", "POST"])
 def createArticle():
     errors = []
+    #проверяем авторизован ли пользователь. читаем из токена id 
     userID = session.get("id")
 
     if userID is not None:
@@ -156,7 +166,7 @@ def createArticle():
         cur = conn.cursor()
 
         cur.execute(f"INSERT INTO articles(user_id, title, article_text) VALUES ({userID}, '{title}', '{text_article}') RETURNING id")
-        new_article_id = cur.fetchone()[0]
+        new_article_id = cur.fetchone()[0] #получаем id от вновь созданной базы
         conn.commit()
 
         dBClose(cur,conn)
@@ -165,7 +175,7 @@ def createArticle():
     return redirect("/lab5/login")
 
 
-@lab5.route("/lab5/articles/<string:article_id>")
+@lab5.route("/lab5/articles/<string:article_id>") #позволяет получить значение в роуте
 def getArticle(article_id):
     userID = session.get("id")
 
@@ -182,7 +192,7 @@ def getArticle(article_id):
         if articleBody is None:
             return "Not found!"
         
-        text = articleBody[1].splitlines()
+        text = articleBody[1].splitlines() #разбитие сторки на массив
 
         return render_template("articleN.html", article_text=text,
         article_title=articleBody[0], username=session.get("username"))
@@ -192,8 +202,9 @@ def getArticle(article_id):
 def getArticleList():
     userID = session.get("id")
     username = session.get("username")
-    articles_list = "Нет статей"
-    if userID is not None:
+    if userID is None:
+        articles_list = []
+    else:
         conn = dBConnect()
         cur = conn.cursor()
         
@@ -201,7 +212,6 @@ def getArticleList():
         articles_list = cur.fetchall()
 
     return render_template("article_list.html", articles_list=articles_list, username=username)
-
 
 @lab5.route("/lab5/logout")
 def logout():
