@@ -7,6 +7,7 @@ from flask import url_for
 
 lab6 = Blueprint('lab6', __name__)
 
+#выводить всех пользователей из таблицы users в консоль
 
 @lab6.route("/lab6/check")
 def main():
