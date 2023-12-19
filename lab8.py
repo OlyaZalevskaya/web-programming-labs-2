@@ -8,7 +8,6 @@ lab8 = Blueprint('lab8',__name__)
 def main():
     return render_template('lab8/index.html')
 
-
 courses = [
     {"name": "c++", "videos": 3, "price": 3000, "created_date": datetime.now()},
     {"name": "basic", "videos": 30, "price": 450, "created_date": datetime.now()},
@@ -32,3 +31,29 @@ def get_course(course_num):
     return courses[course_num]
 
 
+#удаление курса
+@lab8.route('/lab8/api/courses/<int:course_num>', methods=['DELETE'])
+def del_course(course_num):
+    if course_num < 0 or course_num >= len(courses):
+        abort(404)  
+    del courses[course_num]
+    return '', 204
+
+
+#изменение существующего курса
+@lab8.route('/lab8/api/courses/<int:course_num>', methods=['PUT'])
+def put_course(course_num):
+    course = request.get_json()
+    if course_num < 0 or course_num >= len(courses):
+        abort(404) 
+    courses[course_num] = course
+    return courses[course_num]
+
+
+#добавление нового курса
+@lab8.route('/lab8/api/courses/', methods=['POST'])
+def add_course():
+    course = request.get_json()
+    course["created_date"] = datetime.now()  # автоматическое заполнение даты создания
+    courses.append(course)
+    return {"num": len(courses)-1}  # возвращение номера нового курса
